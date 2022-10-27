@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { getAllContacts, getFilter, getIsLoading } from 'redux/selectors';
 import Contact from './Contact/Contact';
@@ -9,14 +9,19 @@ const ContactList = () => {
   const contacts = useSelector(getAllContacts);
   const filter = useSelector(getFilter);
   const isLoading = useSelector(getIsLoading);
+  const [filteredContacts, setFilteredContacts] = useState([]);
 
   function applyFilter() {
-    return contacts.filter(
-      ({ name }) =>
-        !(filter && !name.toLowerCase().includes(filter.toLowerCase()))
+    setFilteredContacts(
+      contacts.filter(
+        ({ name }) =>
+          !(filter && !name.toLowerCase().includes(filter.toLowerCase()))
+      )
     );
   }
-
+  useEffect(() => {
+    applyFilter();
+  });
   return (
     <ul className={css.contactList}>
       {isLoading && (
@@ -24,10 +29,18 @@ const ContactList = () => {
           <span className={css.donate}>{`Loading...`}</span>
         </li>
       )}
-      {applyFilter().map(el => (
+
+      {filteredContacts.map(el => (
         <Contact key={el.id} id={el.id} name={el.name} phone={el.phone} />
       ))}
       {contacts.length === 0 && (
+        <li className={css.notification}>
+          <span
+            className={css.span}
+          >{`Database is empty, please add new contact.`}</span>
+        </li>
+      )}
+      {(filteredContacts.length === 0) && (
         <li className={css.notification}>
           {filter !== '' && (
             <span

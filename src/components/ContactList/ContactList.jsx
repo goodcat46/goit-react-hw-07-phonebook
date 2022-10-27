@@ -21,7 +21,8 @@ const ContactList = () => {
   }
   useEffect(() => {
     applyFilter();
-  });
+    // eslint-disable-next-line
+  },[filter,contacts]);
   return (
     <ul className={css.contactList}>
       {isLoading && (
@@ -29,10 +30,6 @@ const ContactList = () => {
           <span className={css.donate}>{`Loading...`}</span>
         </li>
       )}
-
-      {filteredContacts.map(el => (
-        <Contact key={el.id} id={el.id} name={el.name} phone={el.phone} />
-      ))}
       {contacts.length === 0 && (
         <li className={css.notification}>
           <span
@@ -40,7 +37,10 @@ const ContactList = () => {
           >{`Database is empty, please add new contact.`}</span>
         </li>
       )}
-      {(filteredContacts.length === 0) && (
+      {filteredContacts.map(el => (
+        <Contact key={el.id} id={el.id} name={el.name} phone={el.phone} />
+      ))}
+      {filteredContacts.length === 0 && (
         <li className={css.notification}>
           {filter !== '' && (
             <span

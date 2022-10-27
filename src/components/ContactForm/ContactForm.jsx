@@ -28,7 +28,7 @@ const ContactForm = () => {
       dispatch(
         fetchAddContact({
           name: inputName,
-          number: inputNumber,
+          phone: inputNumber,
         })
       );
     } else {

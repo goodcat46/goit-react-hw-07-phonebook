@@ -1,26 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-// import { deleteContactAction } from 'redux/slices/sliceContacts';
+import { fetchDeleteContact } from 'redux/operations';
 
 import css from './contact.module.css';
 
-const Contact = ({ id, name, number,  }) => {
+const Contact = ({ id, name, phone }) => {
   const dispatch = useDispatch();
 
+  function handleAddContact() {
+    dispatch(fetchDeleteContact(id));
+  }
   return (
     <li className={css.contact}>
-      <span className={css.contactData}>
-        <span className={css.name}>{name}</span>
-        <span className={css.number}>{number}</span>
-      </span>
-      <button
-        className={css.button}
-        onClick={() => {
-          // dispatch(deleteContactAction(id))
-        }}
-        type="button"
-      >
+      <span className={css.name}>{name}</span>
+      <span className={css.phone}>{phone}</span>
+      {/* <span className={css.contactData}></span> */}
+      <button className={css.button} onClick={handleAddContact} type="button">
         Delete
       </button>
     </li>

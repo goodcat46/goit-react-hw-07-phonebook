@@ -1,50 +1,50 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
-  fetchContactsAction,
-  addContactAction,
-  deleteContactAction,
-} from '../actions/actions';
+  fetchAllContacts,
+  fetchAddContact,
+  fetchDeleteContact,
+} from 'redux/operations';
 import { contacts } from 'redux/initialState';
 
 export const contactsSlice = createSlice({
   name: 'contacts',
   initialState: contacts,
   extraReducers: {
-    [fetchContactsAction.fullfiled](state, action) {
-      state.contacts.isLoading = false;
+    [fetchAllContacts.fulfilled](state, action) {
+      state.isLoading = false;
       state.contacts = [...action.payload];
     },
-    [fetchContactsAction.rejected](state, action) {
-      state.contacts.isLoading = false;
-      state.contacts.error = action.payload.error;
+    [fetchAllContacts.rejected](state, action) {
+      state.isLoading = false;
+      state.error = action.payload.error;
     },
-    [fetchContactsAction.pending](state, action) {
-      state.contacts.isLoading = true;
+    [fetchAllContacts.pending](state, action) {
+      state.isLoading = true;
     },
-    [addContactAction.fullfiled](state, action) {
-      state.contacts.isLoading = false;
+    [fetchAddContact.fulfilled](state, action) {
+      state.isLoading = false;
       state.contacts = [action.payload, ...state.contacts];
     },
-    [addContactAction.rejected](state, action) {
-      state.contacts.isLoading = false;
-      state.contacts.error = action.payload.error;
+    [fetchAddContact.rejected](state, action) {
+      state.isLoading = false;
+      state.error = action.payload.error;
     },
-    [addContactAction.pending](state, action) {
-      state.contacts.isLoading = true;
+    [fetchAddContact.pending](state, action) {
+      state.isLoading = true;
     },
-    [deleteContactAction.fullfiled](state, action) {
-      state.contacts.isLoading = false;
+    [fetchDeleteContact.fulfilled](state, action) {
+      state.isLoading = false;
       state.contacts = state.contacts.filter(
         user => user.id !== action.payload.id
       );
     },
-    [deleteContactAction.rejected](state, action) {
-      state.contacts.isLoading = false;
-      state.contacts.error = action.payload.error;
+    [fetchDeleteContact.rejected](state, action) {
+      state.isLoading = false;
+      state.error = action.payload.error;
     },
 
-    [deleteContactAction.pending](state, action) {
-      state.contacts.isLoading = true;
+    [fetchDeleteContact.pending](state, action) {
+      state.isLoading = true;
     },
   },
 });

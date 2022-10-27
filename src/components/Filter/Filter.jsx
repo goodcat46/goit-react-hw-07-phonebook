@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { applyFilterAction } from 'redux/slices/sliceFilter';
 import ContactList from 'components/ContactList/ContactList';
-import Title from 'components/Title/Title';
 
 import { fetchAllContacts } from 'redux/operations';
 
@@ -11,7 +10,6 @@ import css from './filter.module.css';
 
 const Filter = () => {
   const [filterInput, setFilterInput] = useState('');
-  const [isShownList, setIsShownList] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -22,7 +20,6 @@ const Filter = () => {
   function handleFormSubmit(evt) {
     evt.preventDefault();
     dispatch(applyFilterAction(filterInput.trim()));
-    setIsShownList(true);
   }
   useEffect(() => {
     dispatch(fetchAllContacts());
@@ -48,7 +45,7 @@ const Filter = () => {
           Apply filter
         </button>
       </form>
-      {isShownList ? <ContactList /> : <Title title={'Please apply filter'} />}
+      <ContactList />
     </div>
   );
 };

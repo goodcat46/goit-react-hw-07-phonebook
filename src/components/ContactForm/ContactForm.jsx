@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 // import { nanoid } from 'nanoid';
 import css from './contactForm.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-// import { addContactAction } from 'redux/slices/sliceContacts';
-import { fetchAddContact } from 'mockapiApi/fetchAddContact';
+import { fetchAddContact } from 'redux/operations';
 
 const ContactForm = () => {
   const [inputName, setInputName] = useState('');
@@ -25,18 +24,12 @@ const ContactForm = () => {
   const handleSubmit = evt => {
     evt.preventDefault();
     const namesArr = contacts.map(el => el.name);
-    const newContact = {
-      name: inputName,
-      number: inputNumber,
-    };
     if (!namesArr.includes(inputName.toLocaleLowerCase())) {
       dispatch(
-        fetchAddContact(newContact)
-        // addContactAction({
-        //   id: nanoid(5),
-        //   name: inputName,
-        //   number: inputNumber,
-        // })
+        fetchAddContact({
+          name: inputName,
+          number: inputNumber,
+        })
       );
     } else {
       alert(`${inputName} is already in contact.`);

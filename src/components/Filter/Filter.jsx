@@ -2,9 +2,9 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { applyFilterAction } from 'redux/slices/sliceFilter';
-import ContactList from 'components/ContactList/ContactList';
-
 import { fetchAllContacts } from 'redux/contactThunk';
+
+import ContactList from 'components/ContactList/ContactList';
 
 import css from './filter.module.css';
 
@@ -14,20 +14,17 @@ const Filter = () => {
   const dispatch = useDispatch();
 
   function handleFilterChange(evt) {
-    let { target } = evt;
+    const { target } = evt;
     setFilterInput(target.value);
     dispatch(applyFilterAction(target.value.trim()));
   }
-  function handleFormSubmit(evt) {
-    evt.preventDefault();
-    
-  }
+
   useEffect(() => {
     dispatch(fetchAllContacts());
   }, [dispatch]);
   return (
     <div className={css.filter}>
-      <form className={css.form} onSubmit={handleFormSubmit}>
+      <form className={css.form}>
         <label className={css.label} htmlFor="filter">
           Filter
         </label>

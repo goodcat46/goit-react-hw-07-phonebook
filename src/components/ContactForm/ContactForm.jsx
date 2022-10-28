@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
-// import { nanoid } from 'nanoid';
-import css from './contactForm.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAddContact } from 'redux/contactThunk';
+import { selectAllContacts } from 'redux/selectors';
+
+import css from './contactForm.module.css';
 
 const ContactForm = () => {
   const [inputName, setInputName] = useState('');
   const [inputNumber, setInputNumber] = useState('');
-  const { contacts } = useSelector(state => state.contacts);
+  const contacts = useSelector(selectAllContacts);
 
   const dispatch = useDispatch();
 
@@ -32,9 +33,8 @@ const ContactForm = () => {
         })
       );
     } else {
-      alert(`${inputName} is already in contact.`);
+      alert(`"${inputName}" is already in contact.`);
     }
-    // * Очистка інпутів
     setInputName('');
     setInputNumber('');
   };

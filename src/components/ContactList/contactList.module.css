@@ -1,28 +1,40 @@
-.contactList {
+.contactsContainer {
   display: flex;
   flex-direction: column;
+  align-items: stretch;
   gap: 8px;
 
   padding: 16px;
   margin: 0;
 
   width: 100%;
+}
+.contactList {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
 
-  /* box-shadow: 0 0 5px rgba(122, 122, 122, 0.5); */
+  padding: 16px;
+  margin: 0;
 }
 .notification {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  
+
   list-style: none;
 
   text-align: center;
   font-size: 14px;
   padding: 8px;
 }
-.donate{
+.donate {
   text-transform: uppercase;
   font-weight: bold;
 }
- 
+.listTitle {
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 0 20px;
+}

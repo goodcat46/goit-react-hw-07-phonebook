@@ -1,24 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { fetchDeleteContact } from 'redux/contactThunk';
+import { selectIsLoading } from 'redux/selectors';
 
 import css from './contact.module.css';
 
 const Contact = ({ id, name, phone }) => {
+  const [isDeleting, setDeleting] = useState(false);
   const dispatch = useDispatch();
 
   function handleAddContact() {
     dispatch(fetchDeleteContact(id));
+    setDeleting(true)
   }
   return (
     <li className={css.contact}>
       <span className={css.name}>{name}</span>
       <span className={css.phone}>{phone}</span>
-      {/* <span className={css.contactData}></span> */}
-      <button className={css.button} onClick={handleAddContact} type="button">
-        Delete
-      </button>
+      {isDeleting ? (
+        <span className={css.process}>Deleting...</span>
+      ) : (
+        <button className={css.button} onClick={handleAddContact} type="button">
+          Delete
+        </button>
+      )}
     </li>
   );
 };

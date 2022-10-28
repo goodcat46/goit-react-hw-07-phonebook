@@ -6,7 +6,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { store, persistor } from 'redux/store';
 import { Provider } from 'react-redux';
 
-import { fetchAllContacts } from 'redux/operations';
+import { fetchAllContacts } from 'redux/contactThunk';
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(

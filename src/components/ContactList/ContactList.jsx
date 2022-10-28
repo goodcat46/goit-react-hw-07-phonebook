@@ -50,7 +50,7 @@ const ContactList = () => {
           {filter === '' && (
             <span
               className={css.span}
-            >{`Please type any name and apply filter. `}</span>
+            >{`Please type any name. `}</span>
           )}
           <span className={css.donate}>{`or donate ua army`}</span>
         </li>

@@ -3,7 +3,7 @@ import {
   fetchAllContacts,
   fetchAddContact,
   fetchDeleteContact,
-} from 'redux/operations';
+} from 'redux/contactThunk';
 import { contacts } from 'redux/initialState';
 
 export const contactsSlice = createSlice({

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import { fetchDeleteContact } from 'redux/operations';
+import { fetchDeleteContact } from 'redux/contactThunk';
 
 import css from './contact.module.css';
 

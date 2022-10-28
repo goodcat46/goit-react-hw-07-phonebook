@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { fetchDeleteContact } from 'redux/contactThunk';
-import { selectIsLoading } from 'redux/selectors';
 
 import css from './contact.module.css';
 
